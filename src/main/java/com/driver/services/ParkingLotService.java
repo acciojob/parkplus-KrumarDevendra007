@@ -1,5 +1,8 @@
 package com.driver.services;
 
+import com.driver.entity.ParkingLot;
+import com.driver.entity.Spot;
+
 public interface ParkingLotService {
     
     void deleteSpot(int spotId);

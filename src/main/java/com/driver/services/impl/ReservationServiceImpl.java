@@ -48,7 +48,7 @@ public class ReservationServiceImpl implements ReservationService {
         List<Spot> spotList = new ArrayList<>();
 
         for (Spot s : spots){
-            if(s.getOccupied() == true){
+            if(s.getOccupied() == false){
                 int capacity;
                 if(s.getSpotType() == SpotType.TWO_WHEELER){
                     capacity = 2;

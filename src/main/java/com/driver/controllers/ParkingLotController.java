@@ -1,12 +1,13 @@
 package com.driver.controllers;
 
-import com.driver.model.ParkingLot;
-import com.driver.model.Spot;
+import com.driver.services.ParkingLotService;
 import com.driver.services.impl.ParkingLotServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.driver.model.*;
 
 @RestController
 @RequestMapping("/parking-lots")
@@ -28,21 +29,22 @@ public class ParkingLotController {
     public ResponseEntity<Spot> addSpot(@PathVariable int parkingLotId, @RequestParam Integer numberOfWheels, @RequestParam Integer pricePerHour) {
         //create a new spot in the parkingLot with given id
         //the spot type should be the next biggest type in case the number of wheels are not 2 or 4, for 4+ wheels, it is others
-        Spot newSpot = parkingLotService.addSpot(parkingLotId, numberOfWheels, pricePerHour);
+
+        Spot newSpot = parkingLotService.addSpot(parkingLotId,numberOfWheels,pricePerHour);
         return new ResponseEntity<>(newSpot, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/spot/{spotId}/delete")
     public ResponseEntity<Void> deleteSpot(@PathVariable int spotId) {
-        //delete a spot from given parking lot
         parkingLotService.deleteSpot(spotId);
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/{parkingLotId}/spot/{spotId}/update")
     public ResponseEntity<Spot> updateSpot(@PathVariable int parkingLotId, @PathVariable int spotId, @RequestParam int pricePerHour) {
         //update the details of a spot
-        Spot updatedSpot = parkingLotService.updateSpot(parkingLotId, spotId, pricePerHour);
+        Spot updatedSpot = parkingLotService.updateSpot(parkingLotId,spotId,pricePerHour);
         return new ResponseEntity<>(updatedSpot, HttpStatus.OK);
     }
 
@@ -52,4 +54,5 @@ public class ParkingLotController {
         parkingLotService.deleteParkingLot(parkingLotId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }

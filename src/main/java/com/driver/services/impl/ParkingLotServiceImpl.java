@@ -22,20 +22,22 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         ParkingLot parkingLot = new ParkingLot();
         parkingLot.setName(name);
         parkingLot.setAddress(address);
+
         parkingLotRepository1.save(parkingLot);
+
         return parkingLot;
     }
 
     @Override
     public Spot addSpot(int parkingLotId, Integer numberOfWheels, Integer pricePerHour) {
         Spot spot = new Spot();
-        if(numberOfWheels >= 0 && numberOfWheels <= 2){
+        if(numberOfWheels>=0 && numberOfWheels<=2) {
             spot.setSpotType(SpotType.TWO_WHEELER);
         }
-        else if(numberOfWheels >= 3 && numberOfWheels <= 4){
+        else if (numberOfWheels>=3 && numberOfWheels<=4) {
             spot.setSpotType(SpotType.FOUR_WHEELER);
         }
-        else {
+        else{
             spot.setSpotType(SpotType.OTHERS);
         }
 
@@ -43,6 +45,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         spot.setOccupied(false);
 
         ParkingLot parkingLot = parkingLotRepository1.findById(parkingLotId).get();
+
         spot.setParkingLot(parkingLot);
         parkingLot.getSpotList().add(spot);
 
@@ -53,15 +56,19 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public void deleteSpot(int spotId) {
-         spotRepository1.deleteById(spotId);
+
+        spotRepository1.deleteById(spotId);
+
     }
 
     @Override
     public Spot updateSpot(int parkingLotId, int spotId, int pricePerHour) {
+
         ParkingLot parkingLot = parkingLotRepository1.findById(parkingLotId).get();
-        List<Spot>  spotList = parkingLot.getSpotList();
+        List<Spot> spots = parkingLot.getSpotList();
+
         Spot updatedSpot = null;
-        for (Spot s : spotList){
+        for(Spot s : spots){
             if(s.getId() == spotId){
                 s.setPricePerHour(pricePerHour);
                 updatedSpot = s;
@@ -71,7 +78,6 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         }
 
         return updatedSpot;
-
     }
 
     @Override

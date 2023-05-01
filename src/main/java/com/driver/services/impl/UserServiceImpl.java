@@ -6,6 +6,8 @@ import com.driver.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -26,10 +28,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(String name, String phoneNumber, String password) {
-             User user = new User();
-             user.setName(name);
-             user.setPhoneNumber(phoneNumber);
-             user.setPassword(password);
-             userRepository4.save(user);
+        User user = new User();
+        user.setName(name);
+        user.setPhoneNumber(phoneNumber);
+        user.setPassword(password);
+
+        userRepository4.save(user);
     }
 }

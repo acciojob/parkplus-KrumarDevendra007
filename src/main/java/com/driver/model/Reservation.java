@@ -3,21 +3,27 @@ package com.driver.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "reservation")
 public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int numberOfHours;
 
     @ManyToOne
     @JoinColumn
     User user;
+
     @ManyToOne
     @JoinColumn
     Spot spot;
-    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
+
+    @OneToOne(mappedBy = "reservation",cascade = CascadeType.ALL)
     Payment payment;
+
+    // MAKE CONSTRUCTOR AND GETTER/SETTER
 
     public Reservation() {
     }

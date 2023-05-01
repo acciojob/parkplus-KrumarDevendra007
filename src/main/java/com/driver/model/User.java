@@ -5,16 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
+
     private String phoneNumber;
+
     private String password;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     List<Reservation> reservationList = new ArrayList<>();
 
+    // MAKE CONSTRUCTOR AND GETTER/SETTER
     public User() {
     }
 

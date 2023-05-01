@@ -9,7 +9,9 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private boolean paymentCompleted;
+
+    private Boolean paymentCompleted;
+
     @Enumerated(value = EnumType.STRING)
     private PaymentMode paymentMode;
 
@@ -17,10 +19,13 @@ public class Payment {
     @JoinColumn
     Reservation reservation;
 
+    // MAKE CONSTRUCTOR AND GETTER/SETTER
+
+
     public Payment() {
     }
 
-    public Payment(int id, boolean paymentCompleted, PaymentMode paymentMode, Reservation reservation) {
+    public Payment(int id, Boolean paymentCompleted, PaymentMode paymentMode, Reservation reservation) {
         this.id = id;
         this.paymentCompleted = paymentCompleted;
         this.paymentMode = paymentMode;
@@ -35,11 +40,11 @@ public class Payment {
         this.id = id;
     }
 
-    public boolean isPaymentCompleted() {
+    public Boolean isPaymentCompleted() {
         return paymentCompleted;
     }
 
-    public void setPaymentCompleted(boolean paymentCompleted) {
+    public void setPaymentCompleted(Boolean paymentCompleted) {
         this.paymentCompleted = paymentCompleted;
     }
 

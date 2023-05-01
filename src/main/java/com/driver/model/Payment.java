@@ -1,6 +1,4 @@
-package com.driver.entity;
-
-import com.driver.model.PaymentMode;
+package com.driver.model;
 
 import javax.persistence.*;
 

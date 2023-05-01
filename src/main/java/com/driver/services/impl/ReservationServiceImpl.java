@@ -33,7 +33,7 @@ public class ReservationServiceImpl implements ReservationService {
              parkingLot = parkingLotRepository3.findById(parkingLotId).get();
         }
         catch (Exception e){
-            throw new Exception("Reservation cannot be made");
+            throw new Exception("Cannot make reservation");
         }
 
         User user;
@@ -41,7 +41,7 @@ public class ReservationServiceImpl implements ReservationService {
              user = userRepository3.findById(userId).get();
         }
         catch (Exception e){
-            throw new Exception("Reservation cannot be made");
+            throw new Exception("Cannot make reservation");
         }
 
         List<Spot> spots = parkingLot.getSpotList();
@@ -69,7 +69,7 @@ public class ReservationServiceImpl implements ReservationService {
         }
 
         if(spotList.isEmpty() == true){
-            throw new Exception("Reservation cannot be made");
+            throw new Exception("Cannot make reservation");
         }
 
         Spot spotReserve = null;

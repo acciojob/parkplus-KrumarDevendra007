@@ -5,8 +5,11 @@ import com.driver.model.PaymentMode;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "payment")
 public class Payment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private boolean paymentCompleted;
     @Enumerated(value = EnumType.STRING)

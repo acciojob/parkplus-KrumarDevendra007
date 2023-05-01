@@ -3,9 +3,11 @@ package com.driver.entity;
 import com.driver.model.SpotType;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "spot")
 public class Spot {
 
     @Id
@@ -15,25 +17,25 @@ public class Spot {
     private SpotType spotType;
     private int pricePerHour;
     private boolean occupied;
-    private int numberOfWheel;
+
     @ManyToOne
     @JoinColumn
     ParkingLot parkingLot;
 
     @OneToMany(mappedBy = "spot", cascade =  CascadeType.ALL)
-    List<Reservation> reservationList;
+    List<Reservation> reservationList = new ArrayList<>();
 
     public Spot() {
     }
 
-    public Spot(int numberOfWheel, int id, SpotType spotType, int pricePerHour, boolean occupied, ParkingLot parkingLot, List<Reservation> reservationList) {
+    public Spot( int id, SpotType spotType, int pricePerHour, boolean occupied, ParkingLot parkingLot, List<Reservation> reservationList) {
         this.id = id;
         this.spotType = spotType;
         this.pricePerHour = pricePerHour;
         this.occupied = occupied;
         this.parkingLot = parkingLot;
         this.reservationList = reservationList;
-        this.numberOfWheel = numberOfWheel;
+
     }
 
     public int getId() {
@@ -84,11 +86,5 @@ public class Spot {
         this.reservationList = reservationList;
     }
 
-    public int getNumberOfWheel() {
-        return numberOfWheel;
-    }
 
-    public void setNumberOfWheel(int numberOfWheel) {
-        this.numberOfWheel = numberOfWheel;
-    }
 }

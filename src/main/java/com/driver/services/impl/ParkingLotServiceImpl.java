@@ -32,7 +32,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         if(numberOfWheels >= 0 && numberOfWheels <= 2){
             spot.setSpotType(SpotType.TWO_WHEELER);
         }
-        if(numberOfWheels >= 3 && numberOfWheels <= 4){
+        else if(numberOfWheels >= 3 && numberOfWheels <= 4){
             spot.setSpotType(SpotType.FOUR_WHEELER);
         }
         else {
